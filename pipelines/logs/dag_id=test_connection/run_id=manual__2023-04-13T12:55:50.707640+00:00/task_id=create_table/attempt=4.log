@@ -1,0 +1,36 @@
+[2023-04-13T13:11:16.148+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_connection.create_table manual__2023-04-13T12:55:50.707640+00:00 [queued]>
+[2023-04-13T13:11:16.177+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_connection.create_table manual__2023-04-13T12:55:50.707640+00:00 [queued]>
+[2023-04-13T13:11:16.180+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T13:11:16.184+0000] {taskinstance.py:1289} INFO - Starting attempt 4 of 6
+[2023-04-13T13:11:16.188+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T13:11:16.242+0000] {taskinstance.py:1309} INFO - Executing <Task(PostgresOperator): create_table> on 2023-04-13 12:55:50.707640+00:00
+[2023-04-13T13:11:16.270+0000] {standard_task_runner.py:55} INFO - Started process 2352 to run task
+[2023-04-13T13:11:16.284+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'test_connection', 'create_table', 'manual__2023-04-13T12:55:50.707640+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/test_create_table.py', '--cfg-path', '/tmp/tmplkoiq881']
+[2023-04-13T13:11:16.299+0000] {standard_task_runner.py:83} INFO - Job 27: Subtask create_table
+[2023-04-13T13:11:16.558+0000] {task_command.py:389} INFO - Running <TaskInstance: test_connection.create_table manual__2023-04-13T12:55:50.707640+00:00 [running]> on host b030a83adc1d
+[2023-04-13T13:11:16.763+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=mlngueko
+AIRFLOW_CTX_DAG_ID=test_connection
+AIRFLOW_CTX_TASK_ID=create_table
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-13T12:55:50.707640+00:00
+AIRFLOW_CTX_TRY_NUMBER=4
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-04-13T12:55:50.707640+00:00
+[2023-04-13T13:11:16.771+0000] {sql.py:254} INFO - Executing:  create table if not exists test_tab (
+        id integer,
+        name character,
+        timestamp timestamp,
+        primary key (id, name))
+        
+[2023-04-13T13:11:16.812+0000] {base.py:73} INFO - Using connection ID 'postgres_local' for task execution.
+[2023-04-13T13:11:17.618+0000] {base.py:73} INFO - Using connection ID 'postgres_local' for task execution.
+[2023-04-13T13:11:17.853+0000] {sql.py:375} INFO - Running statement:  create table if not exists test_tab (
+        id integer,
+        name character,
+        timestamp timestamp,
+        primary key (id, name))
+        , parameters: None
+[2023-04-13T13:11:17.881+0000] {taskinstance.py:1332} INFO - Marking task as SUCCESS. dag_id=test_connection, task_id=create_table, execution_date=20230413T125550, start_date=20230413T131116, end_date=20230413T131117
+[2023-04-13T13:11:17.977+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-04-13T13:11:18.026+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check
