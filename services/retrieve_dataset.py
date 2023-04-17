@@ -16,4 +16,5 @@ def index():
     db.close()
     return json.dumps({"date": rows})
 
-# app.run()
+
+app.run()
