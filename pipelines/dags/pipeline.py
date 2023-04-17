@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
-from setup.connect_to_database import ConnectToDatabase
 import os
+import psycopg2
 import shutil
 
 
@@ -45,6 +45,21 @@ with DAG(
                 db.close()
                 file_csv.close()
                 move_file(file)
+
+
+    class ConnectToDatabase:
+        def __init__(self, db="felyx", user="postgres", pw="root"):
+            self.conn = psycopg2.connect(dbname=db, user=user, password=pw)
+            self.cur = self.conn.cursor()
+
+        def query(self, query):
+            self.cur.execute(query)
+            self.conn.commit()
+            return self.cur
+
+        def close(self):
+            self.cur.close()
+            self.conn.close()
 
 
     def move_file(filename):

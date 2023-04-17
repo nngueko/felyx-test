@@ -1,7 +1,6 @@
 import json
 from flask import Flask
 import psycopg2
-from setup import ConnectToDatabase
 
 app = Flask(__name__)
 
@@ -33,6 +32,21 @@ class DataManipulation:
         if rows:
             self.res = True
         return self.res
+
+
+class ConnectToDatabase:
+    def __init__(self, db="felyx", user="postgres", pw="root"):
+        self.conn = psycopg2.connect(dbname=db, user=user, password=pw)
+        self.cur = self.conn.cursor()
+
+    def query(self, query):
+        self.cur.execute(query)
+        self.conn.commit()
+        return self.cur
+
+    def close(self):
+        self.cur.close()
+        self.conn.close()
 
 
 app.run()
